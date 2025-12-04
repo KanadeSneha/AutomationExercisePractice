@@ -12,6 +12,10 @@ export class HomePage {
     testCases: Locator;
     contactus: Locator;
     cartLink: Locator;
+    footerBottom:Locator;
+    scrollUp:Locator;
+    subscriptionHeading:Locator;
+    footerEmail:Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -24,6 +28,10 @@ export class HomePage {
         this.signupLogin = page.getByRole('link', { name: 'Signup/Login' });
         this.testCases = page.getByRole('link', { name: 'Test Cases' });
         this.contactus = page.getByRole('link', { name: 'Contact us' });
+        this.footerBottom= page.locator('.footer-bottom');
+        this.scrollUp = page.locator('#scrollUp');
+        this.subscriptionHeading = page.getByRole('heading', { name: 'Subscription', level: 2 });
+        this.footerEmail = page.getByPlaceholder('Your email address');
     }
 
     navigate() {
@@ -56,5 +64,21 @@ export class HomePage {
     }
      getcartLink(){
         return this.cartLink;
+    }
+    async scrollToPageBottom(){
+        await this.page.evaluate(() => window.scroll(0, document.body.scrollHeight));
+    }
+    getfooterBottom(){
+        return this.footerBottom;
+    }
+
+    getscrollUp(){
+        return this.scrollUp;
+    }
+    getsubscriptionHeading(){
+        return this.subscriptionHeading;
+    }
+    getfooterEmail(){
+        return this.footerEmail;
     }
 }
